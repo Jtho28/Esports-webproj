@@ -1,0 +1,94 @@
+sudo mysql -u root
+
+drop database esports;
+
+create database esports;
+
+use esports;
+
+create table organization (
+org_name varchar(30),
+org_id int,
+owner_name mediumtext,
+primary key (org_id)
+);
+
+create table team (
+team_id int,
+manager_name mediumtext,
+org_id int,
+league_id int,
+team_roster mediumtext,
+primary key (team_id, league_id, org_id)
+);
+
+create table league (
+league_name varchar(30),
+league_id int,
+game varchar(30),
+league_participants mediumtext,
+primary key (league_id)
+);
+
+create table user (
+user_name varchar(30),
+password varchar(30),
+org_id int,
+primary key (user_name)
+);
+
+create table match_details (
+match_id int,
+league_id int,
+date datetime,
+match_participants mediumtext,
+result mediumtext,
+primary key (league_id, match_id)
+);
+
+create table invitations (
+user_name varchar(30),
+org_name varchar(30),
+status bool,
+primary key (user_name, org_name)
+);
+
+insert into
+	organization (org_name, org_id)
+values
+	('Red Organization', 1, 'Ben'),
+	('Blue Organization', 2, 'Ethan'),
+	('Yellow Organization', 3, 'Justin'),
+	('Green Organization', 4, 'Noah');
+
+insert into
+	team (team_id, org_id, league_id, team_roster)
+values
+	(1, 'Ben', 1, 1, 'Ben'),
+	(1, 'Ethan', 2, 1, 'Ethan'),
+	(1, 'Justin', 3, 1, 'Justin'),
+	(1, 'Noah', 4, 1, 'Noah');
+
+insert into
+	league (league_name, league_id, game, league_participants)
+values
+	('Fall Rocket League', 1, 'Rocket League', '1,2,3,4');
+
+insert into
+	user (user_name, password, org_id, owner, manager)
+values
+	('Ben', 'Ben123', 1, false, false),
+	('Ethan', 'Ethan123', 2, false, false),
+	('Justin', 'Justin123', 3, false, false),
+	('Noah', 'Noah123', 4, false, false);
+
+insert into
+	match_details (match_id, league_id, date, match_participants, result)
+values
+	(1,1,'2022-12-01 12:00:00', 'Ben,Ethan', 'undecided'),
+	(2,1,'2022-12-02 12:00:00', 'Justin,Noah', 'undecided'),
+	(3,1,'2022-12-03 12:00:00', 'Ben,Noah', 'undecided'),
+	(4,1,'2022-12-04 12:00:00', 'Ethan,Justin', 'undecided'),
+	(5,1,'2022-12-04 14:00:00', 'Noah,Justin', 'undecided'),
+	(6,1,'2022-12-05 12:00:00', 'Ben,Justin', 'undecided'),
+	(7,1,'2022-12-06 12:00:00', 'Ethan,Noah', 'undecided');
