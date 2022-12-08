@@ -47,7 +47,7 @@ primary key (league_id, match_id)
 );
 
 insert into
-	organization (org_name, org_id)
+	organization (org_name, org_id, owner_name)
 values
 	('Red Organization', 1, 'Ben'),
 	('Blue Organization', 2, 'Ethan'),
@@ -55,7 +55,7 @@ values
 	('Green Organization', 4, 'Noah');
 
 insert into
-	team (team_id, org_id, league_id, team_roster)
+	team (team_id, manager_name, org_id, league_id, team_roster)
 values
 	(1, 'Ben', 1, 1, 'Ben'),
 	(1, 'Ethan', 2, 1, 'Ethan'),
@@ -68,7 +68,7 @@ values
 	('Fall Rocket League', 1, 'Rocket League', '1,2,3,4');
 
 insert into
-	user (user_name, password, org_id, owner, manager)
+	user (user_name, password, org_id)
 values
 	('Ben', 'Ben123', 1),
 	('Ethan', 'Ethan123', 2),
