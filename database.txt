@@ -46,13 +46,6 @@ result mediumtext,
 primary key (league_id, match_id)
 );
 
-create table invitations (
-user_name varchar(30),
-org_name varchar(30),
-status bool,
-primary key (user_name, org_name)
-);
-
 insert into
 	organization (org_name, org_id)
 values
