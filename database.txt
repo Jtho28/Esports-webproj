@@ -70,10 +70,10 @@ values
 insert into
 	user (user_name, password, org_id, owner, manager)
 values
-	('Ben', 'Ben123', 1, false, false),
-	('Ethan', 'Ethan123', 2, false, false),
-	('Justin', 'Justin123', 3, false, false),
-	('Noah', 'Noah123', 4, false, false);
+	('Ben', 'Ben123', 1),
+	('Ethan', 'Ethan123', 2),
+	('Justin', 'Justin123', 3),
+	('Noah', 'Noah123', 4);
 
 insert into
 	match_details (match_id, league_id, date, match_participants, result)
