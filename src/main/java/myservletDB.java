@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class myservletDB extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// include your DNS url
-	 String dns="ec2-3-20-227-209.us-east-2.compute.amazonaws.com";
+	 String dns="ec2-34-239-128-199.compute-1.amazonaws.com";
     Connection connection = null;
 	 Statement statement = null;
        
@@ -50,7 +50,7 @@ public class myservletDB extends HttpServlet {
   // Provide your username and password in place of admin1 and root.
   // Change your database name to your database in place of myDB1		 
 	    try {
-		        connection = DriverManager.getConnection("jdbc:mysql://"+ dns+":3306/myDB1", "admin1", "root");
+		        connection = DriverManager.getConnection("jdbc:mysql://"+ dns+":3306/myDB", "jacksonmyers", "EGStickers87_");
 		    } catch (SQLException e) {
 		        System.out.println("Connection Failed!:\n" + e.getMessage());
 		    }

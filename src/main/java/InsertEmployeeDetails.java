@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 public class InsertEmployeeDetails extends HttpServlet {
     private static final long serialVersionUID = 1;
 
-    String dns = "ec2-54-165-241-19.compute-1.amazonaws.com";
+    String dns = "ec2-34-239-128-199.compute-1.amazonaws.com";
     String url = "jdbc:mysql://" + dns + ":3306/myDB";
-    String user = "equalsetremote";
-    String password = "Leanderremote890!";
+    String user = "jacksonmyers";
+    String password = "EGStickers87_";
 
     /**
      * @see HttpServlet#HttpServlet()
