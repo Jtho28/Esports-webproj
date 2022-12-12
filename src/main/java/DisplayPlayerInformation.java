@@ -42,20 +42,16 @@ public class DisplayPlayerInformation extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String sqlTeamID;
-		String sqlOrgID;
-		String sqlLeagueID;
-		String team = "";
-		String org = "";
+		String sql;
+
+		String match = "";
 		String league = "";
+		String date = "";
+		String result = "";
         Connection connection = null;
         Statement statement = null;
         PreparedStatement statement1 = null;
-        PreparedStatement statement2 = null;
-        PreparedStatement statement3 = null;
         ResultSet rs = null;
-        ResultSet rs2 = null;
-        ResultSet rs3 = null;
         PreparedStatement preparedStatement = null;
         String keyword = request.getParameter("name");
         response.setContentType("text/html");
@@ -92,20 +88,16 @@ public class DisplayPlayerInformation extends HttpServlet {
         System.out.println("SUCCESS!!!! You made it, take control     your database now!");
         System.out.println("Creating statement...");
         
-        sqlTeamID = "SELECT * FROM team WHERE manager_name=?";
-        sqlOrgID = "SELECT org_id FROM team WHERE manager_name=?";
-        sqlLeagueID = "SELECT league_id FROM team WHERE manager_name=?";
+        sql = "SELECT match_id, league_id, date, result FROM match_details WHERE match_participants LIKE ?";
+        System.out.println(sql);
+        
     
         
         try {
         	String player = keyword;
         	System.out.println(player);
-        	statement1 = connection.prepareStatement(sqlTeamID);
-        	statement1.setString(1, player);
-        	statement2 = connection.prepareStatement(sqlOrgID);
-        	statement2.setString(1, player);
-        	statement3 = connection.prepareStatement(sqlLeagueID);
-        	statement3.setString(1, player);
+        	statement1 = connection.prepareStatement(sql);
+        	statement1.setString(1, "%" + keyword + "%");
         	
         } catch (SQLException e2) {
         	
@@ -116,8 +108,6 @@ public class DisplayPlayerInformation extends HttpServlet {
         try {
         	
         	rs = statement1.executeQuery();
-        	rs2 = statement2.executeQuery();
-        	rs3 = statement3.executeQuery();
         	System.out.println(rs);
         	
         } catch (SQLException e3) {
@@ -128,13 +118,16 @@ public class DisplayPlayerInformation extends HttpServlet {
         
         try {
         	while (rs.next()) {
-        		team = rs.getString("team_id");
-        		org = rs.getString("org_id");
+        		match = rs.getString("match_id");
         		league = rs.getString("league_id");
+        		date = rs.getString("date");
+        		result = rs.getString("result");
         	}
         } catch (SQLException e3) {
         	e3.printStackTrace();
         }
+        
+        System.out.println("RIGHT HEEEEERE:" + match);
         
         out.println("<ul>" + 
         		"<li><a class =\"active\" href=\"Home2.html\">Home</a></li>" +
@@ -156,22 +149,27 @@ public class DisplayPlayerInformation extends HttpServlet {
         		+ "                <p style = \"position:absolute; left: 620px; top: 260px; padding-bottom: 15px;\">Player Name:</p>\n"
         		+ "            </td>\n"
         		+ "                <td>\n"
-        		+ "                    <input style = \"position:absolute; left: 790px; top: 263px;\" type=\"text\" name=\"name\" id=\"playerName\"><br>\n"
+        		+ "                    <input style = \"position:absolute; left: 750px; top: 263px;\" type=\"text\" name=\"name\" id=\"playerName\"><br>\n"
         		+ "                </td>\n"
         		+ "        </tr>\n"
         		+ "        <tr>\n"
         		+ "            <td>\n"
-        		+ "                <p style=\"position:absolute; left: 620px; top: 310px; padding-bottom: 15px;\">Player Team ID: " + team + "</p>\n"
+        		+ "                <p style=\"position:absolute; left: 620px; top: 310px; padding-bottom: 15px;\">Match: " + match + "</p>\n"
         		+ "            </td>\n"
         		+ "        </tr>\n"
         		+ "        <tr>\n"
         		+ "            <td style=>\n"
-        		+ "                <p style=\"position:absolute; left: 620px; top: 360px; padding-bottom: 15px;\">Player Org ID: " + org + "</p>\n"
+        		+ "                <p style=\"position:absolute; left: 620px; top: 360px; padding-bottom: 15px;\">League: " + league + "</p>\n"
         		+ "            </td>\n"
         		+ "        </tr>\n"
         		+ "        <tr>\n"
         		+ "            <td>\n"
-        		+ "                <p style=\"position:absolute; left: 620px; top: 410px; padding-bottom: 15px\">Player League ID: " + league + "</p>\n"
+        		+ "                <p style=\"position:absolute; left: 620px; top: 410px; padding-bottom: 15px\">Date: " + date + "</p>\n"
+        		+ "            </td>\n"
+        		+ "        </tr>\n"
+        		+ "        <tr>\n"
+        		+ "		       <td>\n"
+        		+ "                <p style=\"position:absolute; left: 620px; top: 460px; padding-bottom: 15px\">Result: " + result + "</p>\n"
         		+ "            </td>\n"
         		+ "        </tr>\n"
         		+ "        <button type=\"submit\" class=\"confirm\">Enter</button>\n"
