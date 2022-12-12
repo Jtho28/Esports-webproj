@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type = "text/css" href="PlayerSearch.css" screen="media"> 
+</head>
+<body>
+
+<nav>
+    <label class="logo">eSports Website</label>
+    <ul>
+        <li><a class ="active" href="Home2.html">Home</a></li>
+        <li><a href="PlayerSearch.html">Player Search</a></li>
+        <li><a href="#">Leagues</a></li>
+        <li><a href="#">Organizations</a></li>
+        <li><a href="#">Teams</a></li>
+    </ul>
+</nav>
+
+
+<div class="popup" id="popup" style = "position:absolute; left: 600px; top: 190px" visibility="visible">
+</div>
+<form action="DisplayPlayerInformation" method="post">
+    <div class="form" id="form">
+        <td>
+            <p style = "position:absolute; left: 700px; top: 210px; padding-bottom: 15px;">Enter Player Name</p><br>
+        </td>
+        <tr>
+            <td>
+                <p style = "position:absolute; left: 620px; top: 260px; padding-bottom: 15px;">Player Name:</p>
+            </td>
+                <td>
+                    <input style = "position:absolute; left: 790px; top: 263px;" type="text" name="name" id="playerName"><br>
+                </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="position:absolute; left: 620px; top: 310px; padding-bottom: 15px;">Player Team ID:</p>
+            </td>
+        </tr>
+        <tr>
+            <td style=>
+                <p style="position:absolute; left: 620px; top: 360px; padding-bottom: 15px;">Player Org ID:</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="position:absolute; left: 620px; top: 410px; padding-bottom: 15px">Player League ID:</p>
+            </td>
+        </tr>
+        <button type="submit" class="confirm">Enter</button>
+    </div>
+</form>
+
+  
+</body>
+</html>
