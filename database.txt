@@ -14,6 +14,7 @@ primary key (org_id)
 );
 
 create table team (
+team_name mediumtext,
 team_id int,
 manager_name mediumtext,
 org_id int,
@@ -26,7 +27,6 @@ create table league (
 league_name varchar(30),
 league_id int,
 game varchar(30),
-league_participants mediumtext,
 primary key (league_id)
 );
 
@@ -46,15 +46,8 @@ result mediumtext,
 primary key (league_id, match_id)
 );
 
-create table invitations (
-user_name varchar(30),
-org_name varchar(30),
-status bool,
-primary key (user_name, org_name)
-);
-
 insert into
-	organization (org_name, org_id)
+	organization (org_name, org_id, owner_name)
 values
 	('Red Organization', 1, 'Ben'),
 	('Blue Organization', 2, 'Ethan'),
@@ -62,25 +55,25 @@ values
 	('Green Organization', 4, 'Noah');
 
 insert into
-	team (team_id, org_id, league_id, team_roster)
+	team (team_name, team_id, manager_name, org_id, league_id, team_roster)
 values
-	(1, 'Ben', 1, 1, 'Ben'),
-	(1, 'Ethan', 2, 1, 'Ethan'),
-	(1, 'Justin', 3, 1, 'Justin'),
-	(1, 'Noah', 4, 1, 'Noah');
+	('Red RL', 1, 'Ben', 1, 1, 'Ben'),
+	('Blue RL', 1, 'Ethan', 2, 1, 'Ethan'),
+	('Yellow RL', 1, 'Justin', 3, 1, 'Justin'),
+	('Green RL', 1, 'Noah', 4, 1, 'Noah');
 
 insert into
-	league (league_name, league_id, game, league_participants)
+	league (league_name, league_id, game)
 values
-	('Fall Rocket League', 1, 'Rocket League', '1,2,3,4');
+	('Fall Rocket League', 1, 'Rocket League');
 
 insert into
-	user (user_name, password, org_id, owner, manager)
+	user (user_name, password, org_id)
 values
-	('Ben', 'Ben123', 1, false, false),
-	('Ethan', 'Ethan123', 2, false, false),
-	('Justin', 'Justin123', 3, false, false),
-	('Noah', 'Noah123', 4, false, false);
+	('Ben', 'Ben123', 1),
+	('Ethan', 'Ethan123', 2),
+	('Justin', 'Justin123', 3),
+	('Noah', 'Noah123', 4);
 
 insert into
 	match_details (match_id, league_id, date, match_participants, result)
