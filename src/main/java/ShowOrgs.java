@@ -107,7 +107,7 @@ public class ShowOrgs extends HttpServlet {
         		+ "        <li><a href=\"PlayerSearch2.html\">Player Search</a></li>\n"
         		+ "        <li><a href=\"/webpro/ShowLeagues\">Leagues</a></li>\n"
         		+ "        <li><a href=\"/webpro/ShowOrgs\">Organizations</a></li>\n"
-        		+ "        <li><a href=\"webpro/ShowTeams\">Teams</a></li>\n"
+        		+ "        <li><a href=\"/webpro/ShowTeams\">Teams</a></li>\n"
         		+ "    </ul>\n"
         		+ "</nav>\n"
         		+ "\n"
