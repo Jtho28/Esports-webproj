@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ShowLeagues
+ * Servlet implementation class ShowOrgs
  */
-@WebServlet("/ShowLeagues")
-public class ShowLeagues extends HttpServlet {
+@WebServlet("/ShowOrgs")
+public class ShowOrgs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	String dns = "ec2-18-205-149-151.compute-1.amazonaws.com";
@@ -29,7 +29,7 @@ public class ShowLeagues extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowLeagues() {
+    public ShowOrgs() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,8 +43,7 @@ public class ShowLeagues extends HttpServlet {
 		
 		String name = "";
 		String id = "";
-		String game = "";
-		String participants = "";
+		String owner = "";
 		Connection connection = null;
 		PreparedStatement statement1 = null;
 		ResultSet rs = null;
@@ -83,7 +82,7 @@ public class ShowLeagues extends HttpServlet {
         System.out.println("SUCCESS!!!! You made it, take control     your database now!");
         System.out.println("Creating statement...");
         
-        sql = "SELECT * FROM league";
+        sql = "SELECT * FROM organization";
         System.out.println(sql);
         
         try {
@@ -113,16 +112,15 @@ public class ShowLeagues extends HttpServlet {
         		+ "</nav>\n"
         		+ "\n"
         		+ "<table border=1 width=50% height=30%>"
-        		+ "<tr><th>League Name</th><th>League ID#</th><th>Game</th><th>Participants</th>");
+        		+ "<tr><th>Organization Name</th><th>Org ID#</th><th>Owner</th>");
         
         try {
         	while (rs.next()) {
-        		name = rs.getString("league_name");
-        		id = rs.getString("league_id");
-        		game = rs.getString("game");
-        		participants = rs.getString("league_participants");
+        		name = rs.getString("org_name");
+        		id = rs.getString("org_id");
+        		owner = rs.getString("owner_name");
         		
-        		out.println("<tr><td>" + name + "</td><td>" + id + "</td><td>" + game + "</td><td>" + participants + "</td></tr>");
+        		out.println("<tr><td>" + name + "</td><td>" + id + "</td><td>" + owner + "</td></tr>");
         	}
         } catch (SQLException e3) {
         	e3.printStackTrace();
@@ -134,8 +132,6 @@ public class ShowLeagues extends HttpServlet {
         		+ "  \n"
         		+ "</body>\n"
         		+ "</html>");
-				
-		
 	}
 
 	/**

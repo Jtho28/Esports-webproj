@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ShowLeagues
+ * Servlet implementation class ShowTeams
  */
-@WebServlet("/ShowLeagues")
-public class ShowLeagues extends HttpServlet {
+@WebServlet("/ShowTeams")
+public class ShowTeams extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	String dns = "ec2-18-205-149-151.compute-1.amazonaws.com";
@@ -29,7 +29,7 @@ public class ShowLeagues extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowLeagues() {
+    public ShowTeams() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,12 +39,13 @@ public class ShowLeagues extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String sql;
+String sql;
 		
-		String name = "";
-		String id = "";
-		String game = "";
-		String participants = "";
+		String teamID = "";
+		String manager = "";
+		String orgID = "";
+		String leagueID = "";
+		String roster = "";
 		Connection connection = null;
 		PreparedStatement statement1 = null;
 		ResultSet rs = null;
@@ -83,7 +84,7 @@ public class ShowLeagues extends HttpServlet {
         System.out.println("SUCCESS!!!! You made it, take control     your database now!");
         System.out.println("Creating statement...");
         
-        sql = "SELECT * FROM league";
+        sql = "SELECT * FROM team";
         System.out.println(sql);
         
         try {
@@ -113,29 +114,27 @@ public class ShowLeagues extends HttpServlet {
         		+ "</nav>\n"
         		+ "\n"
         		+ "<table border=1 width=50% height=30%>"
-        		+ "<tr><th>League Name</th><th>League ID#</th><th>Game</th><th>Participants</th>");
+        		+ "<tr><th>Team ID</th><th>Manager</th><th>Org ID</th><th>League ID</th><th>Roster</th>");
         
         try {
         	while (rs.next()) {
-        		name = rs.getString("league_name");
-        		id = rs.getString("league_id");
-        		game = rs.getString("game");
-        		participants = rs.getString("league_participants");
+        		teamID = rs.getString("team_id");
+        		manager = rs.getString("manager_name");
+        		orgID = rs.getString("org_id");
+        		leagueID = rs.getString("league_id");
+        		roster = rs.getString("team_roster");
         		
-        		out.println("<tr><td>" + name + "</td><td>" + id + "</td><td>" + game + "</td><td>" + participants + "</td></tr>");
+        		out.println("<tr><td>" + teamID + "</td><td>" + manager + "</td><td>" + orgID + "</td><td>" + leagueID + "</td><td>" + roster + "</td></tr>");
         	}
         } catch (SQLException e3) {
         	e3.printStackTrace();
         }
         
-        System.out.println(name);
         
         out.println("\n"
         		+ "  \n"
         		+ "</body>\n"
         		+ "</html>");
-				
-		
 	}
 
 	/**

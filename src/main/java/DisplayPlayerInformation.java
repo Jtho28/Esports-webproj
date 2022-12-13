@@ -132,9 +132,9 @@ public class DisplayPlayerInformation extends HttpServlet {
         out.println("<ul>" + 
         		"<li><a class =\"active\" href=\"Home2.html\">Home</a></li>" +
         		"<li><a href=\"PlayerSearch2.html\">Player Search</a></li>" +
-        		"<li><a href=\"#\">Leagues</a></li>" + 
-        		"<li><a href=\"#\">Organizations</a></li>" + 
-        		"<li><a href=\"#\">Teams</a></li>" +
+        		"<li><a href=\"/webpro/ShowLeagues\">Leagues</a></li>" + 
+        		"<li><a href=\"/webpro/ShowOrgs\">Organizations</a></li>" + 
+        		"<li><a href=\"/webpro/ShowTeams\">Teams</a></li>" +
         		"</ul>" + 
         		"</nav>" + 
         		"<div class=\"popup\" id=\"popup\" style = \"position:absolute; left: 600px; top: 190px\" visibility=\"visible\">" +
